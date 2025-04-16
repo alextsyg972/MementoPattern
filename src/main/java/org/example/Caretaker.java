@@ -4,16 +4,23 @@ import java.util.*;
 
 public class Caretaker {
     private Queue<Memento> snapshot;
+    private Originator originator;
     public Caretaker() {
         this.snapshot = new ArrayDeque<>();
+        originator = new Originator();
     }
-    public void saveState(Memento memento) {
-        snapshot.add(memento);
+
+    public void append(String text) {
+        originator.append(text);
+        snapshot.add(originator.save());
     }
-    public Memento restoreState() {
-        if (!snapshot.isEmpty()) {
-            return snapshot.poll();
+
+    public void undo() {
+        if (snapshot.peek() != null) {
+            originator.undo(snapshot.peek());
         }
-        return null;
     }
+
+
+
 }

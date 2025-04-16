@@ -24,10 +24,4 @@ public class Originator {
         text = new StringBuilder(memento.getText());
     }
 
-    @Override
-    public String toString() {
-        return "Wrapper{" +
-                "text=" + text +
-                '}';
-    }
 }

@@ -1,25 +1,26 @@
 package org.example;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.Arrays;
 
 public class CollectionPractice1 {
     public static void main(String[] args) {
         System.out.println(
-                CollectionPractice1.filter(List.of(1, 2, 2), new FilterImpl<>(1, 2))
+                Arrays.toString(
+                        CollectionPractice1.filter(new String[]{"da", "net"}, o -> o + " filter")
+                )
         );
+        CollectionPractice1.filter(new Integer[]{1, 2, 3}, o -> o + 2);
 
     }
 
-
-    public static <T> List<T> filter(List<T> array, Filter<T> filter) {
-        List<T> arrayNew = new ArrayList<>();
-        for (T t : array) {
-            arrayNew.add(filter.apply(t));
+    public static <T> T[] filter(T[] t, Filter<T> filter) {
+        Object[] ts = new Object[t.length];
+        for (int i = 0; i <t.length ; i++) {
+            ts[i] = filter.apply(t[i]);
         }
-        return arrayNew;
+        return (T[]) ts;
     }
+
 
 }

@@ -16,8 +16,10 @@ public class ConcurrentBank {
     }
 
     public void transfer(BankAccount account1, BankAccount account2, int sum) {
-        account1.getLock().lock();
-        account2.getLock().lock();
+        BankAccount first = account1.getId() < account2.getId() ? account1 : account2;
+        BankAccount second = account1.getId() < account2.getId() ? account2 : account1;
+        first.getLock().lock();
+        second.getLock().lock();
         try {
             if (account1.withdraw(sum)) {
                 account2.deposit(sum);
@@ -31,16 +33,21 @@ public class ConcurrentBank {
     public int getTotalBalance() {
         List<BankAccount> accountList;
 
-        synchronized (this) {
-            accountList = new ArrayList<>(accounts.values());
-        }
-
-        int total = 0;
+        accountList = new ArrayList<>(accounts.values());
         for (BankAccount account : accountList) {
-            System.out.println(account);
-            total += account.getBalance();
+            account.getLock().lock();
         }
-        return total;
+        int total = 0;
+        try {
+            for (BankAccount account : accountList) {
+                System.out.println(account);
+                total += account.getBalance();
+            }
+            return total;
+        } finally {
+            for (BankAccount account : accountList) {
+                account.getLock().unlock();
+            }
+        }
     }
-
 }

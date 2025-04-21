@@ -1,8 +1,6 @@
 package org.example;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.*;
 
@@ -14,27 +12,30 @@ public class ComplexTaskExecutor {
         this.numberOfTasks = numberOfTasks;
     }
 
-    
+
     public void executeTasks(int numberOfTasks) {
-        ExecutorService executorService = Executors.newFixedThreadPool(numberOfTasks);
-        List<Integer> results = Collections.synchronizedList(new ArrayList<>());
+        ExecutorService executorService = Executors.newFixedThreadPool(this.numberOfTasks);
+        List<Future<Integer>> futures = new ArrayList<>();
 
         CyclicBarrier barrier = new CyclicBarrier(numberOfTasks, () -> {
-            System.out.println("all completed");
-            int sum = results.stream().mapToInt(Integer::intValue).sum();
-            System.out.println("sum of values = " + sum);
+            System.out.println(Thread.currentThread().getName() + " Барьер");
         });
 
-        for (int i = 0; i < numberOfTasks ; i++) {
-            executorService.submit(new ComplexTask(i + 1, barrier, results));
+        for (int i = 0; i < numberOfTasks; i++) {
+            futures.add(executorService.submit(new ComplexTask(i + 1, barrier)));
         }
         executorService.shutdown();
-        try {
-            executorService.awaitTermination(10, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            System.err.println("Ожидание завершения пула потоков прервано.");
-        }
 
+        List<Integer> results = futures.stream().map(x -> {
+            try {
+                return x.get();
+            } catch (InterruptedException | ExecutionException e) {
+                throw new RuntimeException(e);
+            }
+        }).toList();
+
+        int result = results.stream().mapToInt(Integer::intValue).sum();
+        System.out.println(Thread.currentThread().getName() + " - Результат задач: " + result);
 
     }
 

@@ -1,6 +1,6 @@
-package org.example.practice1.Service;
+package org.example.practice1.service;
 
-import org.example.practice1.Entity.User;
+import org.example.practice1.entity.User;
 
 import java.util.List;
 

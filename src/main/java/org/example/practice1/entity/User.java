@@ -1,4 +1,4 @@
-package org.example.practice1.Entity;
+package org.example.practice1.entity;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.*;
@@ -25,8 +25,8 @@ public class User {
     @JsonView({View.UserSummary.class, View.UserDetails.class})
     @Email
     private String email;
-//
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
+    //
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "user_id")
     @JsonView(View.UserDetails.class)
     private List<Order> orders = new ArrayList<>();

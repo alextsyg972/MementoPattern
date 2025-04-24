@@ -1,10 +1,10 @@
-package org.example.practice1.Controller;
+package org.example.practice1.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.practice1.Entity.Order;
-import org.example.practice1.Entity.OrderStatus;
-import org.example.practice1.Entity.User;
-import org.example.practice1.Service.UserService;
+import org.example.practice1.entity.Order;
+import org.example.practice1.entity.OrderStatus;
+import org.example.practice1.entity.User;
+import org.example.practice1.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

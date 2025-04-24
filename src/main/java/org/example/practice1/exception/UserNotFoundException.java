@@ -1,4 +1,4 @@
-package org.example.practice1.Exception;
+package org.example.practice1.exception;
 
 public class UserNotFoundException extends RuntimeException{
     public UserNotFoundException(String message) {

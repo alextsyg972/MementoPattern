@@ -1,6 +1,4 @@
-package org.example.practice1.Exception;
-
-import org.springframework.http.HttpStatus;
+package org.example.practice1.exception;
 
 import java.time.LocalDateTime;
 

@@ -1,8 +1,8 @@
-package org.example.practice1.Service;
+package org.example.practice1.service;
 
-import org.example.practice1.Entity.User;
-import org.example.practice1.Exception.UserNotFoundException;
-import org.example.practice1.Repository.UserRepository;
+import org.example.practice1.entity.User;
+import org.example.practice1.exception.UserNotFoundException;
+import org.example.practice1.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

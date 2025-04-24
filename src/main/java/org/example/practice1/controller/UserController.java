@@ -1,9 +1,9 @@
-package org.example.practice1.Controller;
+package org.example.practice1.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.validation.Valid;
-import org.example.practice1.Entity.User;
-import org.example.practice1.Service.UserService;
+import org.example.practice1.entity.User;
+import org.example.practice1.service.UserService;
 import org.example.practice1.config.View;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

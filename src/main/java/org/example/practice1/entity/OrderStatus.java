@@ -1,4 +1,4 @@
-package org.example.practice1.Entity;
+package org.example.practice1.entity;
 
 public enum OrderStatus {
 

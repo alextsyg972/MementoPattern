@@ -20,6 +20,11 @@ public class DepartmentController {
         this.departmentService = departmentService;
     }
 
+    @GetMapping("/departments/home")
+    public ResponseEntity<List<Department>> getHomeDepartments() {
+        return new ResponseEntity<>(departmentService.getAllDepartments(), HttpStatus.OK);
+    }
+
     @GetMapping("/departments")
     public ResponseEntity<List<Department>> getAllDepartments() {
         return new ResponseEntity<>(departmentService.getAllDepartments(), HttpStatus.OK);

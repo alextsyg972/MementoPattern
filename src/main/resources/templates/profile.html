@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <meta charset="UTF-8">
+    <title>GitHub Profile</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        .card { border: 1px solid #ccc; padding: 20px; border-radius: 8px; max-width: 400px; }
+        .label { font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<h1>Добро пожаловать, <span th:text="${name}"></span>!</h1>
+
+
+
+<div class="card">
+    <h2>GitHub Profile</h2>
+    <p><span class="label">Name:</span> <span th:text="${name}"></span></p>
+    <p><span class="label">Login:</span> <span th:text="${login}"></span></p>
+    <p><span class="label">ID:</span> <span th:text="${id}"></span></p>
+    <p><span class="label">Роль:</span> <span th:text="${role}"></span></p>
+</div>
+</body>
+</html>
